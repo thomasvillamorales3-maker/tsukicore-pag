@@ -1,0 +1,647 @@
+/* ============================================================
+   PROT.CSS — Página secundaria
+   ============================================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 400;
+    background: #0a0a0a;
+}
+
+body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(180deg, #36255C 0%, #0a0a0a 50%, #36255C 100%);
+}
+
+/* ---------- BARRA SUPERIOR ---------- */
+.barra-superior {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: rgba(15, 8, 28, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(120, 80, 180, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.barra-superior .logo-mini {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    user-select: none;
+}
+
+.barra-superior .logo-mini span {
+    background: linear-gradient(135deg, #b388ff, #7c4dff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.barra-superior .nav-mini {
+    display: flex;
+    gap: 1.8rem;
+    align-items: center;
+}
+
+.barra-superior .nav-mini a {
+    font-family: 'Archivo Black', sans-serif;
+    color: rgba(255, 255, 255, 0.65);
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: color 0.25s;
+    position: relative;
+}
+
+.barra-superior .nav-mini a:hover { color: #fff; }
+.barra-superior .nav-mini a.activo { color: #b388ff; }
+
+.barra-superior .nav-mini a.activo::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #b388ff, #7c4dff);
+    border-radius: 2px;
+}
+
+.barra-superior .nav-mini a.acerca {
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: 1.8rem;
+}
+
+/* ---------- CONTENIDO ---------- */
+.contenido-scroll {
+    padding: 3rem 3rem 4rem;
+    background: rgba(10, 10, 10, 0.3);
+    backdrop-filter: blur(6px);
+    flex: 1;
+}
+
+/* ---------- BLOQUES ---------- */
+.bloque {
+    margin-bottom: 3.5rem;
+    max-width: 900px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: aparecer 0.7s ease forwards;
+}
+
+.bloque:nth-child(1) { animation-delay: 0.1s; }
+.bloque:nth-child(2) { animation-delay: 0.2s; }
+.bloque:nth-child(3) { animation-delay: 0.3s; }
+.bloque:nth-child(4) { animation-delay: 0.4s; }
+.bloque:nth-child(5) { animation-delay: 0.5s; }
+.bloque:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes aparecer {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.bloque:last-child { margin-bottom: 0; }
+
+.bloque .titulo {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: rgba(200, 180, 255, 0.92);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    position: relative;
+    padding-bottom: 0.6rem;
+}
+
+.bloque .titulo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, #b388ff, #7c4dff);
+    border-radius: 2px;
+}
+
+.bloque .texto {
+    font-family: 'Satoshi', sans-serif;
+    color: rgba(220, 210, 240, 0.85);
+    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    letter-spacing: 0.3px;
+}
+
+.bloque .texto p { margin-bottom: 1rem; }
+.bloque .texto p:last-child { margin-bottom: 0; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+    .contenido-scroll { padding: 2rem 2rem 3rem; }
+    .barra-superior { padding: 0.85rem 2rem; }
+}
+
+@media (max-width: 768px) {
+    .contenido-scroll { padding: 1.8rem 1.5rem 2.5rem; }
+    .bloque .titulo { font-size: 1.3rem; letter-spacing: 0.8px; }
+    .bloque .texto { font-size: 1.05rem; }
+    .barra-superior .nav-mini { gap: 1.2rem; }
+    .barra-superior .nav-mini a { font-size: 0.6rem; }
+    .barra-superior .nav-mini a.acerca { padding-left: 1.2rem; }
+}
+
+@media (max-width: 480px) {
+    .contenido-scroll { padding: 1.5rem 1rem 2rem; }
+    .bloque .titulo { font-size: 1.1rem; letter-spacing: 0.5px; }
+    .bloque .texto { font-size: 1rem; line-height: 1.65; }
+    .bloque { margin-bottom: 2.5rem; }
+    .barra-superior { padding: 0.6rem 0.8rem; flex-wrap: wrap; gap: 0.4rem; }
+    .barra-superior .logo-mini { font-size: 0.85rem; }
+    .barra-superior .nav-mini { gap: 0.7rem; flex-wrap: wrap; }
+    .barra-superior .nav-mini a { font-size: 0.55rem; }
+    .barra-superior .nav-mini a.acerca { padding-left: 0.8rem; }
+}
+/* ========== ESTILOS DEL LOGIN Y MENÚ DE USUARIO ========== */
+.nav-btn-login {
+    background: transparent;
+    border: 1px solid rgba(179, 136, 255, 0.4);
+    color: #b388ff;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.nav-btn-login:hover {
+    background: rgba(179, 136, 255, 0.1);
+    box-shadow: 0 0 15px rgba(124, 77, 255, 0.3);
+}
+
+/* Menú de usuario logueado */
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 120%;
+    background: rgba(15, 8, 28, 0.95);
+    border: 1px solid rgba(120, 80, 180, 0.4);
+    border-radius: 8px;
+    min-width: 160px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+    z-index: 101;
+    overflow: hidden;
+}
+
+.user-menu:hover .user-dropdown {
+    display: block;
+}
+
+.user-dropdown a {
+    display: block;
+    padding: 0.8rem 1rem;
+    color: rgba(255,255,255,0.7) !important;
+    text-decoration: none;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 0.9rem;
+    text-transform: none;
+    transition: background 0.2s;
+}
+
+.user-dropdown a:hover {
+    background: rgba(179, 136, 255, 0.15);
+    color: #fff !important;
+}
+
+.user-dropdown .delete-link {
+    color: #ff6b6b !important;
+}
+
+.user-dropdown .delete-link:hover {
+    background: rgba(255, 107, 107, 0.1);
+}
+
+/* Ventana Modal */
+/* ========== BOTÓN DE LOGIN Y MENÚ DE USUARIO ========== */
+.nav-btn-login {
+    background: transparent;
+    border: 1px solid rgba(179, 136, 255, 0.4);
+    color: #b388ff;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 0.7rem;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.nav-btn-login:hover {
+    background: rgba(179, 136, 255, 0.1);
+    box-shadow: 0 0 15px rgba(124, 77, 255, 0.3);
+    color: #fff;
+}
+
+/* Menú de usuario logueado */
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.user-name {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 0.7rem;
+    color: #b388ff;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 0.4rem 0.5rem;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: rgba(15, 8, 28, 0.95);
+    border: 1px solid rgba(120, 80, 180, 0.4);
+    border-radius: 8px;
+    min-width: 160px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+    z-index: 101;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.user-menu:hover .user-dropdown {
+    display: block;
+}
+
+.user-dropdown a {
+    display: block;
+    padding: 0.8rem 1rem;
+    color: rgba(255,255,255,0.7) !important;
+    text-decoration: none;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+}
+
+.user-dropdown a:hover {
+    background: rgba(179, 136, 255, 0.15);
+    color: #fff !important;
+}
+
+.user-dropdown .delete-link {
+    color: #ff6b6b !important;
+}
+
+.user-dropdown .delete-link:hover {
+    background: rgba(255, 107, 107, 0.1);
+}
+/* ========== ZONA DE RESEÑAS ========== */
+/* ========== ZONA DEL JUEGO (GODOT) ========== */
+.juego-seccion {
+    width: 100%;
+    margin: 2rem 0 4rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.game-wrapper {
+    width: 100%;
+    max-width: 1000px; /* Ancho máximo para que no se estire horrible en pantallas gigantes */
+    background: #000; /* Fondo negro por si el juego no llena todo */
+    border: 1px solid rgba(120, 80, 180, 0.4);
+    border-radius: 14px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    overflow: hidden;
+    position: relative;
+    
+    /* Proporción 16:9 para el juego */
+    aspect-ratio: 16 / 9; 
+}
+
+.game-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+/* Mensaje en caso de que el juego aún no esté exportado */
+.game-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(30, 18, 50, 0.8);
+    color: #fff;
+    text-align: center;
+    padding: 2rem;
+}
+
+.game-placeholder h3 {
+    font-family: 'Archivo Black', sans-serif;
+    color: #b388ff;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.game-placeholder p {
+    font-family: 'Satoshi', sans-serif;
+    color: rgba(255,255,255,0.7);
+}
+
+/* ========== ARREGLO DE MARGEN PARA RESEÑAS ========== */
+.resenas-seccion {
+    margin-top: 3rem;
+    max-width: 1000px; /* Alineado con el ancho del juego */
+    margin-left: auto;
+    margin-right: auto;
+    border-top: 1px solid rgba(120, 80, 180, 0.3);
+    padding: 3rem 2rem 5rem 2rem; /* Añadido padding a los lados y abajo para que no quede pegado al borde */
+    background: rgba(30, 18, 50, 0.2);
+    border-radius: 14px;
+}
+
+/* ... (El resto de tus estilos de reseñas se mantienen igual) ... */
+
+.resenas-seccion .titulo {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: rgba(200, 180, 255, 0.92);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-bottom: 0.6rem;
+}
+
+.resenas-seccion .titulo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, #b388ff, #7c4dff);
+    border-radius: 2px;
+}
+
+.resenas-seccion .subtitulo-seccion {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 1rem;
+    color: rgba(220, 210, 240, 0.6);
+    margin-bottom: 2rem;
+    margin-top: 0.8rem;
+}
+
+/* Formulario de Reseña */
+.form-resena {
+    background: rgba(30, 18, 50, 0.55);
+    border: 1px solid rgba(120, 80, 180, 0.25);
+    border-radius: 14px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+.rating-selector {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.rating-selector label {
+    font-family: 'Satoshi', sans-serif;
+    color: rgba(255,255,255,0.8);
+    font-weight: 700;
+}
+
+.rating-selector select {
+    background: rgba(10, 5, 20, 0.8);
+    border: 1px solid rgba(120, 80, 180, 0.4);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-family: 'Satoshi', sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+
+.form-resena textarea {
+    width: 100%;
+    height: 100px;
+    background: rgba(10, 5, 20, 0.8);
+    border: 1px solid rgba(120, 80, 180, 0.4);
+    border-radius: 8px;
+    padding: 1rem;
+    color: #fff;
+    font-family: 'Satoshi', sans-serif;
+    resize: vertical;
+    outline: none;
+    margin-bottom: 1rem;
+}
+
+.form-resena textarea:focus {
+    border-color: #b388ff;
+}
+
+.btn-enviar-resena {
+    background: linear-gradient(135deg, #b388ff, #7c4dff);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-enviar-resena:hover {
+    transform: scale(1.02);
+}
+
+.login-prompt {
+    background: rgba(30, 18, 50, 0.55);
+    border: 1px solid rgba(120, 80, 180, 0.25);
+    border-radius: 14px;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.login-prompt p {
+    color: rgba(255,255,255,0.7);
+    font-family: 'Satoshi', sans-serif;
+    margin-bottom: 1rem;
+}
+
+/* Lista de Reseñas */
+.lista-resenas {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.resena-card {
+    background: rgba(15, 8, 28, 0.6);
+    border-left: 3px solid #b388ff;
+    border-radius: 0 8px 8px 0;
+    padding: 1.5rem;
+}
+
+.resena-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.resena-header strong {
+    font-family: 'Archivo Black', sans-serif;
+    color: #b388ff;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.estrellas {
+    font-size: 0.9rem;
+}
+
+.resena-card p {
+    color: rgba(220, 210, 240, 0.85);
+    font-family: 'Satoshi', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+}
+
+.fecha-resena {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+}
+
+.no-resenas {
+    color: rgba(255,255,255,0.5);
+    font-family: 'Satoshi', sans-serif;
+    font-style: italic;
+}
+/* ========== PROMEDIO DE PUNTUACIÓN ========== */
+.promedio-seccion {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(30, 18, 50, 0.8);
+    border: 1px solid rgba(179, 136, 255, 0.4);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    box-shadow: 0 10px 30px rgba(124, 77, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Un brillo de fondo sutil */
+.promedio-seccion::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(179, 136, 255, 0.1) 0%, transparent 60%);
+    z-index: 0;
+}
+
+.promedio-seccion > * {
+    position: relative;
+    z-index: 1;
+}
+
+.promedio-numero {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 4rem;
+    line-height: 1;
+    background: linear-gradient(135deg, #b388ff, #7c4dff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 15px rgba(124, 77, 255, 0.3);
+}
+
+.promedio-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.promedio-estrellas {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.3rem;
+}
+
+.promedio-info p {
+    font-family: 'Satoshi', sans-serif;
+    color: rgba(220, 210, 240, 0.7);
+    font-size: 1rem;
+}
+
+/* Responsive para móviles */
+@media (max-width: 480px) {
+    .promedio-seccion {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    .promedio-info {
+        align-items: center;
+    }
+}

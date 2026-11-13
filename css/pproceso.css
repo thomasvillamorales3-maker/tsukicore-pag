@@ -1,0 +1,435 @@
+/* ============================================================
+   PPROCESO.CSS — Página de bloqueo y galería
+   ============================================================ */
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 400;
+    background: #0a0a0a;
+}
+
+body {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* ---------- CONTENEDOR PRINCIPAL ---------- */
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(180deg, #2d1b4e 0%, #0a0a0a 50%, #2d1b4e 100%);
+    background-attachment: fixed;
+    position: relative;
+    transition: min-height 0.3s ease;
+}
+
+.main-wrapper.scroll-activado {
+    min-height: 100vh;
+}
+
+/* ---------- BARRA SUPERIOR ---------- */
+.barra-superior {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: rgba(15, 8, 28, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(120, 80, 180, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.barra-superior .logo-mini { 
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    user-select: none; 
+}
+
+.barra-superior .logo-mini span { 
+    background: linear-gradient(135deg, #b388ff, #7c4dff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    background-clip: text; 
+}
+
+.barra-superior .nav-mini { 
+    display: flex;
+    gap: 1.8rem;
+    align-items: center; 
+}
+
+.barra-superior .nav-mini a { 
+    font-family: 'Archivo Black', sans-serif;
+    color: rgba(255, 255, 255, 0.65);
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: color 0.25s;
+    position: relative; 
+}
+
+.barra-superior .nav-mini a:hover { color: #fff; }
+.barra-superior .nav-mini a.activo { color: #b388ff; }
+
+.barra-superior .nav-mini a.activo::after { 
+    content: '';
+    position: absolute;
+    bottom: -6px; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, #b388ff, #7c4dff);
+    border-radius: 2px; 
+}
+
+.barra-superior .nav-mini a.acerca { 
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: 1.8rem;
+}
+
+/* ---------- CONTENEDOR DE BLOQUEO ---------- */
+.lock-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.titulo-principal { 
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.92);
+    letter-spacing: 1px; line-height: 1.3;
+    margin-bottom: 3rem; text-transform: uppercase;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    animation: aparecer 0.8s ease forwards;
+    opacity: 0; transform: translateY(20px);
+}
+
+.subtitulo-degradado { 
+    background: linear-gradient(135deg, #b388ff, #7c4dff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+.password-form { 
+    width: 100%; max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: aparecer 0.8s ease 0.2s forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* CUADRITOS DE CONTRASEÑA */
+.input-cuadritos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 1rem;
+}
+
+.char-box {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    border: 2px solid rgba(120, 80, 180, 0.5) !important;
+    width: 60px;
+    height: 75px;
+    border-radius: 12px;
+    background-color: rgba(30, 18, 50, 0.9) !important;
+    color: #b388ff !important;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    caret-color: #b388ff;
+}
+
+.char-box:focus {
+    border-color: #b388ff !important;
+    box-shadow: 0 0 20px rgba(179, 136, 255, 0.4), inset 0 0 10px rgba(0,0,0,0.5);
+    background-color: rgba(50, 30, 80, 0.9) !important;
+    transform: translateY(-5px);
+}
+
+.shake { 
+    animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both; 
+}
+
+@keyframes shake { 
+    10%, 90% { transform: translate3d(-2px, 0, 0); }
+    20%, 80% { transform: translate3d(4px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+    40%, 60% { transform: translate3d(6px, 0, 0); } 
+}
+
+.error-msg { 
+    color: #ff6b6b;
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.error-msg.visible { opacity: 1; }
+
+/* ---------- PISTA SECRETA ---------- */
+.hint-password {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    cursor: default;
+    user-select: none;
+    z-index: 10;
+}
+
+.hint-password:hover {
+    color: rgba(179, 136, 255, 0.6);
+}
+
+/* ============================================================
+   GALERÍA DESBLOQUEADA (Estilo Mosaico Orgánico)
+   ============================================================ */
+
+.unlocked-content {
+    display: none;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 3rem;
+    opacity: 0;
+}
+
+.mensaje-desbloqueado {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    background: linear-gradient(135deg, #b388ff, #7c4dff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Usamos columnas en lugar de grid para que la imagen mande en altura */
+.galeria-proceso {
+    column-count: 3;
+    column-gap: 1.5rem;
+}
+
+.media-box {
+    background: rgba(30, 18, 50, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    
+    /* Rompe la caja entre columnas y da margen abajo */
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
+}
+
+.media-box:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(124, 77, 255, 0.3);
+    border-color: rgba(179, 136, 255, 0.5);
+    z-index: 2;
+}
+
+/* La imagen dicta el tamaño, sin recortes */
+.media-box img, 
+.media-box video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@keyframes aparecer {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+    .barra-superior { padding: 0.85rem 2rem; }
+    .titulo-principal { font-size: 2.4rem; }
+    .mensaje-desbloqueado { font-size: 2.5rem; }
+    
+    /* 2 columnas en tablets */
+    .galeria-proceso {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .barra-superior .nav-mini { gap: 1.2rem; }
+    .barra-superior .nav-mini a { font-size: 0.6rem; }
+    .barra-superior .nav-mini a.acerca { padding-left: 1.2rem; }
+    .titulo-principal { font-size: 2rem; }
+    .password-form { max-width: 95%; }
+    .unlocked-content { padding: 3rem 1.5rem; }
+    
+    .char-box {
+        width: 50px;
+        height: 65px;
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .barra-superior { padding: 0.6rem 0.8rem; flex-wrap: wrap; gap: 0.4rem; }
+    .barra-superior .logo-mini { font-size: 0.85rem; }
+    .barra-superior .nav-mini { gap: 0.7rem; flex-wrap: wrap; }
+    .barra-superior .nav-mini a { font-size: 0.55rem; }
+    .titulo-principal { font-size: 1.5rem; }
+    
+    .input-cuadritos { gap: 8px; }
+    .char-box {
+        width: 40px;
+        height: 55px;
+        font-size: 1.4rem;
+        border-radius: 8px;
+    }
+    
+    /* 1 sola columna en celulares */
+    .galeria-proceso {
+        column-count: 1;
+    }
+}
+
+/* ========== BOTÓN DE LOGIN Y MENÚ DE USUARIO ========== */
+.nav-btn-login {
+    background: transparent;
+    border: 1px solid rgba(179, 136, 255, 0.4);
+    color: #b388ff;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 0.7rem;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.nav-btn-login:hover {
+    background: rgba(179, 136, 255, 0.1);
+    box-shadow: 0 0 15px rgba(124, 77, 255, 0.3);
+    color: #fff;
+}
+
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.user-name {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 0.7rem;
+    color: #b388ff;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 0.4rem 0.5rem;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: rgba(15, 8, 28, 0.95);
+    border: 1px solid rgba(120, 80, 180, 0.4);
+    border-radius: 8px;
+    min-width: 160px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+    z-index: 101;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.user-menu:hover .user-dropdown {
+    display: block;
+}
+
+.user-dropdown a {
+    display: block;
+    padding: 0.8rem 1rem;
+    color: rgba(255,255,255,0.7) !important;
+    text-decoration: none;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+}
+
+.user-dropdown a:hover {
+    background: rgba(179, 136, 255, 0.15);
+    color: #fff !important;
+}
+
+.user-dropdown .delete-link {
+    color: #ff6b6b !important;
+}
+
+.user-dropdown .delete-link:hover {
+    background: rgba(255, 107, 107, 0.1);
+}
